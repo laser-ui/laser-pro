@@ -1,3 +1,4 @@
+import type { HttpRequestConfigOverrides } from './types';
 import type { AxiosRequestConfig } from 'axios';
 
 import _axios from 'axios';
@@ -5,20 +6,28 @@ import { isNull } from 'lodash';
 
 import { CONFIGS } from './configs';
 
-export function axios(config: AxiosRequestConfig<any>) {
+export function axios(config: AxiosRequestConfig<any>, overrides?: true | HttpRequestConfigOverrides) {
   const axios = CONFIGS.mock ? CONFIGS.mock : _axios;
+
+  if (overrides === true) {
+    return axios(config);
+  }
+
   const token = CONFIGS.token;
 
-  const headers: any = Object.assign({}, config.headers);
-  if (token && !isNull(token.value)) {
-    headers.Authorization = headers.Authorization || `Bearer ${token.value}`;
+  let headers = config.headers;
+  if (!overrides?.authorization) {
+    if (token && !isNull(token.value)) {
+      headers = Object.assign({}, config.headers);
+      headers.Authorization = `Bearer ${token.value}`;
+    }
   }
 
   return axios({
     ...config,
-    baseURL: config.baseURL || CONFIGS.baseURL,
+    baseURL: overrides?.baseURL ? config.baseURL : CONFIGS.baseURL,
     // eslint-disable-next-line @typescript-eslint/no-non-null-assertion
-    url: config.url || CONFIGS.transformURL(config.url!),
+    url: overrides?.url ? config.url : CONFIGS.transformURL(config.url!),
     headers,
   });
 }
