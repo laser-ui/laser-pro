@@ -24,9 +24,6 @@
   "dependencies": {
     "lodash": "^4.17.21"
   },
-  "peerDependencies": {
-    "@laser-pro/storage": "0.0.1"
-  },
   "publishConfig": {
     "access": "public",
     "directory": "../../dist/packages/auth"

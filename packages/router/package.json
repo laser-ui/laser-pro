@@ -26,8 +26,6 @@
     "lodash": "^4.17.21"
   },
   "peerDependencies": {
-    "@laser-pro/acl": "0.0.1",
-    "@laser-pro/auth": "0.0.1",
     "@laser-ui/hooks": ">=0.6.0",
     "react-router-dom": ">=6.0.0"
   },
