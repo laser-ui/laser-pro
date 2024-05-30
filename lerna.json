@@ -1,6 +1,6 @@
 {
   "$schema": "node_modules/lerna/schemas/lerna-schema.json",
-  "packages": ["packages/acl", "packages/auth", "packages/http", "packages/router", "packages/storage"],
+  "packages": ["packages/acl", "packages/auth", "packages/http", "packages/router", "packages/storage", "packages/rcharts"],
   "version": "0.0.1",
   "command": {
     "version": {

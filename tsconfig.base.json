@@ -32,6 +32,7 @@
       "@laser-pro/auth/*": ["packages/auth/src/*"],
       "@laser-pro/http": ["packages/http/src/index.ts"],
       "@laser-pro/http/*": ["packages/http/src/*"],
+      "@laser-pro/rcharts": ["packages/rcharts/src/index.ts"],
       "@laser-pro/router": ["packages/router/src/index.ts"],
       "@laser-pro/router/*": ["packages/router/src/*"],
       "@laser-pro/storage": ["packages/storage/src/index.ts"],

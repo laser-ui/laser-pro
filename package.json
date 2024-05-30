@@ -7,7 +7,7 @@
     "build:affected": "nx affected -t build",
     "lint:affected": "nx affected -t lint",
     "prepare": "husky",
-    "prepublishOnly": "nx run-many -t build -p acl auth http router storage",
+    "prepublishOnly": "nx run-many -t build -p acl auth http router storage rcharts",
     "test:affected": "nx affected -t test",
     "util:sort-package-json": "sort-package-json 'package.json' 'packages/*/package.json'",
     "version": "prettier lerna.json --write"
@@ -18,6 +18,7 @@
     "@laser-ui/themes": "^0.6.4",
     "@laser-ui/utils": "^0.6.4",
     "axios": "^1.7.2",
+    "echarts": "^5.5.0",
     "jsurl": "^0.1.5",
     "lodash": "^4.17.21",
     "react": "18.3.1",
