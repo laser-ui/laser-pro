@@ -1,0 +1,36 @@
+{
+  "name": "@laser-pro/auth",
+  "version": "0.0.1",
+  "description": "Advanced modules for enterprise applications.",
+  "keywords": [
+    "laser-pro",
+    "auth"
+  ],
+  "homepage": "https://github.com/laser-ui/laser-pro",
+  "bugs": {
+    "url": "https://github.com/laser-ui/laser-pro/issues"
+  },
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/laser-ui/laser-pro.git"
+  },
+  "license": "MIT",
+  "author": "Xie Jay <xiejay97@gmail.com>",
+  "sideEffects": false,
+  "type": "module",
+  "main": "./index.js",
+  "module": "./index.js",
+  "types": "./index.d.ts",
+  "dependencies": {
+    "lodash": "^4.17.21"
+  },
+  "peerDependencies": {
+    "@laser-pro/router": "0.0.1",
+    "@laser-pro/storage": "0.0.1",
+    "react-router-dom": ">=6.0.0"
+  },
+  "publishConfig": {
+    "access": "public",
+    "directory": "../../dist/packages/auth"
+  }
+}

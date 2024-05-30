@@ -1,0 +1,42 @@
+{
+  "compileOnSave": false,
+  "compilerOptions": {
+    "rootDir": ".",
+    "sourceMap": true,
+    "declaration": true,
+    "moduleResolution": "node",
+    "emitDecoratorMetadata": true,
+    "experimentalDecorators": true,
+    "importHelpers": true,
+    "target": "es2015",
+    "module": "esnext",
+    "lib": ["es2020", "dom"],
+    "skipLibCheck": true,
+    "skipDefaultLibCheck": true,
+    "baseUrl": ".",
+    "resolveJsonModule": true,
+    "newLine": "LF",
+    "isolatedModules": true,
+    "useDefineForClassFields": true,
+    "noFallthroughCasesInSwitch": true,
+    "noPropertyAccessFromIndexSignature": true,
+    "strict": true,
+    "allowSyntheticDefaultImports": true,
+    "forceConsistentCasingInFileNames": true,
+    "disableSizeLimit": true,
+    "allowJs": false,
+    "paths": {
+      "@laser-pro/acl": ["packages/acl/src/index.ts"],
+      "@laser-pro/acl/*": ["packages/acl/src/*"],
+      "@laser-pro/auth": ["packages/auth/src/index.ts"],
+      "@laser-pro/auth/*": ["packages/auth/src/*"],
+      "@laser-pro/http": ["packages/http/src/index.ts"],
+      "@laser-pro/http/*": ["packages/http/src/*"],
+      "@laser-pro/router": ["packages/router/src/index.ts"],
+      "@laser-pro/router/*": ["packages/router/src/*"],
+      "@laser-pro/storage": ["packages/storage/src/index.ts"],
+      "@laser-pro/storage/*": ["packages/storage/src/*"]
+    }
+  },
+  "exclude": ["node_modules", "tmp"]
+}
