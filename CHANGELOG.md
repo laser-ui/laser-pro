@@ -2,6 +2,12 @@
 
 All notable changes to this project will be documented in this file. See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [0.0.4](https://github.com/laser-ui/laser-pro/compare/v0.0.3...v0.0.4) (2024-05-30)
+
+### Bug Fixes
+
+- **http:** fix config override ([f10fc0c](https://github.com/laser-ui/laser-pro/commit/f10fc0c8d4de34bf1fd2eedd71aac71ddfd8f74a))
+
 ## [0.0.3](https://github.com/laser-ui/laser-pro/compare/v0.0.2...v0.0.3) (2024-05-30)
 
 ### Features
