@@ -2,6 +2,17 @@
 
 All notable changes to this project will be documented in this file. See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [0.0.2](https://github.com/laser-ui/laser-pro/compare/v0.0.1...v0.0.2) (2024-05-30)
+
+### Bug Fixes
+
+- fix dependencies ([6ba2ed8](https://github.com/laser-ui/laser-pro/commit/6ba2ed82b26b6a7888cf8e0bac1b0c33927e8f64))
+- move useTokenGuard to router ([edcd84f](https://github.com/laser-ui/laser-pro/commit/edcd84ff08399082b8c51b07eed32c759e3a27ad))
+
+### Features
+
+- add rcharts module ([e21ebc2](https://github.com/laser-ui/laser-pro/commit/e21ebc227f5a2d537d67e94ea1a239e887377a6d))
+
 ## 0.0.1 (2024-05-30)
 
 **Note:** Version bump only for package @laser-pro/source

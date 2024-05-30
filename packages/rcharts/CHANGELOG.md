@@ -4,10 +4,6 @@ All notable changes to this project will be documented in this file. See [Conven
 
 ## [0.0.2](https://github.com/laser-ui/laser-pro/compare/v0.0.1...v0.0.2) (2024-05-30)
 
-### Bug Fixes
+### Features
 
-- fix dependencies ([6ba2ed8](https://github.com/laser-ui/laser-pro/commit/6ba2ed82b26b6a7888cf8e0bac1b0c33927e8f64))
-
-## 0.0.1 (2024-05-30)
-
-**Note:** Version bump only for package @laser-pro/http
+- add rcharts module ([e21ebc2](https://github.com/laser-ui/laser-pro/commit/e21ebc227f5a2d537d67e94ea1a239e887377a6d))
