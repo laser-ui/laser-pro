@@ -25,9 +25,7 @@
     "lodash": "^4.17.21"
   },
   "peerDependencies": {
-    "@laser-pro/router": "0.0.1",
-    "@laser-pro/storage": "0.0.1",
-    "react-router-dom": ">=6.0.0"
+    "@laser-pro/storage": "0.0.1"
   },
   "publishConfig": {
     "access": "public",

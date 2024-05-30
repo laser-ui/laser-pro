@@ -1,5 +1,5 @@
-import type { Token } from './abstract-token';
-import type { CanActivateFn } from '@laser-pro/router/types';
+import type { CanActivateFn } from './types';
+import type { Token } from '@laser-pro/auth';
 
 import { isNull } from 'lodash';
 import { createElement } from 'react';
