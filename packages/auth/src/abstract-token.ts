@@ -61,13 +61,25 @@ export abstract class Token {
 
       this._cancelRefresh();
       if (val && !isNull(this.expiration) && !this.expired) {
-        const timeout = this.expiration - Date.now() - this._configs.refreshOffset;
+        const max = 60 * 60 * 1000;
+        let timeout = this.expiration - Date.now() - this._configs.refreshOffset;
+        let tid: number;
         new Promise<string>((resolve, reject) => {
-          const tid = window.setTimeout(() => {
-            if (this._refresh) {
-              this._refresh().then(resolve);
+          const loop = () => {
+            if (timeout > max) {
+              timeout = timeout - max;
+              tid = window.setTimeout(() => {
+                loop();
+              }, max);
+            } else {
+              tid = window.setTimeout(() => {
+                if (this._refresh) {
+                  this._refresh().then(resolve);
+                }
+              }, timeout);
             }
-          }, timeout);
+          };
+          loop();
           this._cancelRefresh = () => {
             clearTimeout(tid);
             reject();
