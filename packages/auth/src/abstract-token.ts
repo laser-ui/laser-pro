@@ -7,7 +7,7 @@ import { isNull } from 'lodash';
 export interface TokenConfigs {
   storage: AbstractStorage<string, string>;
   key: string;
-  expirationOffset: number;
+  refresh: () => Promise<string | null>;
   refreshOffset: number;
 }
 
@@ -15,11 +15,9 @@ export abstract class Token {
   private _configs: TokenConfigs = {
     storage: new LocalStorageService(),
     key: 'token',
-    expirationOffset: 10 * 1000,
+    refresh: () => Promise.resolve(null),
     refreshOffset: 60 * 1000,
   };
-  private _value: string | null = null;
-  private _refresh: false | (() => Promise<string>) = false;
   private _cancelRefresh = () => {};
 
   public abstract get expiration(): number | null;
@@ -30,66 +28,53 @@ export abstract class Token {
   }
 
   public get value(): string | null {
-    return this._value;
-  }
-
-  public set refresh(val: false | (() => Promise<string>)) {
-    this._refresh = val;
+    return this._configs.storage.getItem(this._configs.key);
   }
 
   public get expired(): boolean {
     if (isNull(this.expiration)) {
       return false;
     } else {
-      return this.expiration - this._configs.expirationOffset <= Date.now();
+      return this.expiration <= Date.now();
     }
   }
 
   constructor(configs: Partial<TokenConfigs>) {
     this.config(configs);
 
-    if (this._configs.refreshOffset <= this._configs.expirationOffset) {
-      throw new Error('`refreshOffset` should be greater than `expirationOffset`');
-    }
-
-    this.updateToken(this._configs.storage.getItem(this._configs.key));
+    this.refreshToken();
   }
 
-  private updateToken(val: string | null) {
-    if (val !== this._value) {
-      this._value = val;
-
-      this._cancelRefresh();
-      if (val && !isNull(this.expiration) && !this.expired) {
-        const max = 60 * 60 * 1000;
-        let timeout = this.expiration - Date.now() - this._configs.refreshOffset;
-        let tid: number;
-        new Promise<string>((resolve, reject) => {
-          const loop = () => {
-            if (timeout > max) {
-              timeout = timeout - max;
-              tid = window.setTimeout(() => {
-                loop();
-              }, max);
-            } else {
-              tid = window.setTimeout(() => {
-                if (this._refresh) {
-                  this._refresh().then(resolve);
+  private refreshToken() {
+    this._cancelRefresh();
+    if (this.value && !isNull(this.expiration) && !this.expired) {
+      const max = 60 * 60 * 1000;
+      let timeout = Math.max(this.expiration - Date.now() - this._configs.refreshOffset, 0);
+      let tid: number;
+      let cancel = false;
+      const loop = () => {
+        if (timeout > max) {
+          timeout = timeout - max;
+          tid = window.setTimeout(() => {
+            loop();
+          }, max);
+        } else {
+          tid = window.setTimeout(() => {
+            if (!cancel) {
+              this._configs.refresh().then((token) => {
+                if (!cancel && token) {
+                  this.set(token);
                 }
-              }, timeout);
+              });
             }
-          };
-          loop();
-          this._cancelRefresh = () => {
-            clearTimeout(tid);
-            reject();
-          };
-        })
-          .then((token) => {
-            this.updateToken(token);
-          })
-          .catch(() => {});
-      }
+          }, timeout);
+        }
+      };
+      loop();
+      this._cancelRefresh = () => {
+        clearTimeout(tid);
+        cancel = true;
+      };
     }
   }
 
@@ -101,10 +86,11 @@ export abstract class Token {
 
   set(val: string) {
     this._configs.storage.setItem(this._configs.key, val);
-    this.updateToken(val);
+    this.refreshToken();
   }
+
   remove() {
     this._configs.storage.removeItem(this._configs.key);
-    this.updateToken(null);
+    this._cancelRefresh();
   }
 }
