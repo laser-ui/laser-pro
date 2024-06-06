@@ -7,7 +7,7 @@
     "build:affected": "nx affected -t build",
     "lint:affected": "nx affected -t lint",
     "prepare": "husky",
-    "prepublishOnly": "nx run-many -t build -p acl auth http router storage rcharts",
+    "prepublishOnly": "nx run-many -t build -p acl auth http router storage",
     "test:affected": "nx affected -t test",
     "util:sort-package-json": "sort-package-json 'package.json' 'packages/*/package.json'",
     "version": "prettier lerna.json --write"
