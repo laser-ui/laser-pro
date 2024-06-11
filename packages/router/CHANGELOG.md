@@ -2,6 +2,10 @@
 
 All notable changes to this project will be documented in this file. See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [0.0.5](https://github.com/laser-ui/laser-pro/compare/v0.0.4...v0.0.5) (2024-06-11)
+
+**Note:** Version bump only for package @laser-pro/router
+
 ## [0.0.4](https://github.com/laser-ui/laser-pro/compare/v0.0.3...v0.0.4) (2024-05-30)
 
 **Note:** Version bump only for package @laser-pro/router
