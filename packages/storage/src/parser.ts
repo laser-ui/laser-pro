@@ -8,3 +8,18 @@ export interface AbstractParserOptions<V> {
   number: Parser<V, number>;
   json: Parser<V, any>;
 }
+
+export const STORAGE_PARSER: AbstractParserOptions<string> = {
+  plain: {
+    serializer: (value) => value,
+    deserializer: (value) => value,
+  },
+  number: {
+    serializer: (value) => String(value),
+    deserializer: (value) => Number(value),
+  },
+  json: {
+    serializer: (value) => JSON.stringify(value),
+    deserializer: (value) => JSON.parse(value),
+  },
+};
