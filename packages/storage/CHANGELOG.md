@@ -2,6 +2,12 @@
 
 All notable changes to this project will be documented in this file. See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [0.0.6](https://github.com/laser-ui/laser-pro/compare/v0.0.5...v0.0.6) (2024-06-27)
+
+### Features
+
+- **storage:** add `SessionStorageService` ([67776b8](https://github.com/laser-ui/laser-pro/commit/67776b8be0d0b150c5e6170b53631581d00adaac))
+
 ## [0.0.5](https://github.com/laser-ui/laser-pro/compare/v0.0.4...v0.0.5) (2024-06-11)
 
 **Note:** Version bump only for package @laser-pro/storage
