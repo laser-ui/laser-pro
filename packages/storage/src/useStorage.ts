@@ -1,7 +1,7 @@
 import type { AbstractParserOptions } from './parser';
 
 import { useEventCallback } from '@laser-ui/hooks';
-import { isNull } from 'lodash';
+import { isNull, isNumber, isString } from 'lodash';
 import { useMemo, useSyncExternalStore } from 'react';
 
 import { CONFIGS, config } from './configs';
@@ -80,7 +80,7 @@ export function useStorage<V>(
   };
 }
 
-useStorage.get = <V>(key: string, options?: Options<V>) => {
+useStorage.get = <V>(key: string, options?: Options<V>): V => {
   const { defaultValue = key in CONFIGS.default ? CONFIGS.default[key] : null, parser = 'plain' } = options ?? {};
 
   const { deserializer } = (CONFIGS.parser ?? CONFIGS.service.parser ?? MEMORY_STORAGE_PARSER)[parser] as any;
@@ -90,11 +90,33 @@ useStorage.get = <V>(key: string, options?: Options<V>) => {
 
   return value;
 };
-useStorage.config = config;
-useStorage.configs = CONFIGS;
+useStorage.set = <V>(key: string, value: V): void => {
+  const parser = CONFIGS.parser ?? CONFIGS.service.parser ?? MEMORY_STORAGE_PARSER;
+  const originValue = isString(value)
+    ? parser.plain.serializer(value)
+    : isNumber(value)
+      ? parser.number.serializer(value)
+      : parser.json.serializer(value);
+  CONFIGS.service.setItem(key, originValue);
+
+  const store = STROES.get(key);
+  if (store) {
+    store.emitChange();
+  }
+};
+useStorage.remove = (key: string): void => {
+  CONFIGS.service.removeItem(key);
+
+  const store = STROES.get(key);
+  if (store) {
+    store.emitChange();
+  }
+};
 useStorage.clear = () => {
   CONFIGS.service.clear();
   for (const [, store] of STROES) {
     store.emitChange();
   }
 };
+useStorage.config = config;
+useStorage.configs = CONFIGS;
