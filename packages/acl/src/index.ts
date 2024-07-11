@@ -1,1 +1,1 @@
-export { useACL } from './useACL';
+export { acl, useACL } from './useACL';
