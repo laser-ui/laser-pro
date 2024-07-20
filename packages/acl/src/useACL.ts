@@ -31,6 +31,9 @@ export const acl = {
   get controls() {
     return controls;
   },
+  get full() {
+    return _full;
+  },
   setFull: (full: boolean) => {
     _full = full;
     emitChange();
