@@ -2,6 +2,12 @@
 
 All notable changes to this project will be documented in this file. See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [0.1.0](https://github.com/laser-ui/laser-pro/compare/v0.0.9...v0.1.0) (2024-07-20)
+
+### Bug Fixes
+
+- **acl:** fix missing full field ([4344569](https://github.com/laser-ui/laser-pro/commit/4344569ec5fd9de7a41f61abe633211b2f5c5131))
+
 ## [0.0.9](https://github.com/laser-ui/laser-pro/compare/v0.0.8...v0.0.9) (2024-07-11)
 
 ### Bug Fixes
