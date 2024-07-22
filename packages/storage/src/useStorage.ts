@@ -40,10 +40,26 @@ export interface Options<T> {
 }
 export function useStorage<V>(
   key: string,
-  options?: Options<V>,
+  options: { defaultValue: V; parser?: keyof AbstractParserOptions<any> },
 ): {
   readonly value: V;
-  set: (value: V | ((prev?: V) => V)) => void;
+  set: (value: V | ((prev: V) => V)) => void;
+  remove: () => void;
+};
+export function useStorage<V>(
+  key: string,
+  options?: { parser?: keyof AbstractParserOptions<any> },
+): {
+  readonly value: V | null;
+  set: (value: V | ((prev: V | null) => V)) => void;
+  remove: () => void;
+};
+export function useStorage<V>(
+  key: string,
+  options?: Options<V>,
+): {
+  readonly value: V | null;
+  set: (value: V | ((prev: V | null) => V)) => void;
   remove: () => void;
 } {
   const { defaultValue = key in CONFIGS.default ? CONFIGS.default[key] : null, parser = 'plain' } = options ?? {};
@@ -69,7 +85,7 @@ export function useStorage<V>(
   return {
     value,
     set: useEventCallback((val) => {
-      const originValue = serializer(typeof val === 'function' ? (val as (prev?: V) => V)(value) : val);
+      const originValue = serializer(typeof val === 'function' ? (val as (prev: V | null) => V)(value) : val);
       CONFIGS.service.setItem(key, originValue);
       store.emitChange();
     }),
