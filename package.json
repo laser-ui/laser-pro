@@ -13,10 +13,10 @@
     "version": "prettier lerna.json --write"
   },
   "dependencies": {
-    "@laser-ui/components": "^0.6.4",
-    "@laser-ui/hooks": "^0.6.4",
-    "@laser-ui/themes": "^0.6.4",
-    "@laser-ui/utils": "^0.6.4",
+    "@laser-ui/components": "^1.0.0",
+    "@laser-ui/hooks": "^1.0.0",
+    "@laser-ui/themes": "^1.0.0",
+    "@laser-ui/utils": "^1.0.0",
     "axios": "^1.7.2",
     "jsurl": "^0.1.5",
     "lodash": "^4.17.21",
