@@ -2,7 +2,6 @@ import type { HttpRequestConfigOverrides } from './types';
 import type { AxiosRequestConfig } from 'axios';
 
 import _axios from 'axios';
-import { isNull } from 'lodash';
 
 import { CONFIGS } from './configs';
 
@@ -17,7 +16,7 @@ export function axios(config: AxiosRequestConfig<any>, overrides?: true | HttpRe
 
   let headers = config.headers;
   if (!overrides?.authorization) {
-    if (token && !isNull(token.value)) {
+    if (token) {
       headers = Object.assign({}, config.headers);
       headers.Authorization = `Bearer ${token.value}`;
     }
