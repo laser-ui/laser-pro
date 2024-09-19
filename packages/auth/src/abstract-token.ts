@@ -40,12 +40,10 @@ export abstract class Token {
     Object.keys(configs).forEach((key) => {
       (this._configs as any)[key] = (configs as any)[key];
     });
-
-    this.refreshToken();
   }
 
   private refreshTokenTid?: number;
-  private refreshToken() {
+  protected refreshToken() {
     if (this.expiration !== 0 && !this.expired) {
       const max = 60 * 60 * 1000;
       let timeout = Math.max(this.expiration - this._configs.refreshOffset - Date.now(), 0);

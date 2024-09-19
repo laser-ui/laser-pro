@@ -31,5 +31,7 @@ export class JWTToken<T extends JWTTokenPayload> extends Token {
 
     const [, payload] = value.split('.');
     this._payload = JSON.parse(base64url.decode(payload));
+
+    this.refreshToken();
   }
 }
