@@ -1,4 +1,4 @@
-import { isNull } from 'lodash';
+import type { TokenConfigs } from './types';
 
 import { Token } from './abstract-token';
 import { base64url } from './base64url';
@@ -13,17 +13,23 @@ export interface JWTTokenPayload {
   jti: string;
 }
 export class JWTToken<T extends JWTTokenPayload> extends Token {
-  public get payload(): T | null {
-    if (isNull(this.value)) {
-      return null;
-    }
-    const [, payload] = this.value.split('.');
-    return JSON.parse(base64url.decode(payload));
+  private _payload: T;
+
+  public get payload(): T {
+    return this._payload;
   }
-  public get expiration(): number | null {
-    return isNull(this.payload) ? null : this.payload.exp * 1000;
+
+  public get expiration(): number {
+    return this._payload.exp * 1000;
   }
-  public set expiration(val: number | null) {
+  public set expiration(val: number) {
     throw new Error('You should not change `expiration` when use JWT!');
+  }
+
+  constructor(value: string, configs: Partial<TokenConfigs>) {
+    super(value, configs);
+
+    const [, payload] = value.split('.');
+    this._payload = JSON.parse(base64url.decode(payload));
   }
 }
