@@ -22,7 +22,7 @@
   "module": "./index.js",
   "types": "./index.d.ts",
   "peerDependencies": {
-    "@laser-ui/hooks": ">=1.0.0",
+    "@laser-ui/hooks": ">=2.0.0",
     "axios": "^1.6.0"
   },
   "publishConfig": {

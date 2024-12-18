@@ -25,7 +25,7 @@
     "lodash": "^4.17.21"
   },
   "peerDependencies": {
-    "@laser-ui/hooks": ">=1.0.0"
+    "@laser-ui/hooks": ">=2.0.0"
   },
   "publishConfig": {
     "access": "public",

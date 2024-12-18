@@ -1,8 +1,8 @@
 import type { CanActivateFn, Route, RouteItem, TitleOptions } from './types';
 import type { RouteMatch } from 'react-router-dom';
 
+import { useIsomorphicLayoutEffect } from '@laser-ui/hooks';
 import { isFunction, isUndefined, nth } from 'lodash';
-import { useEffect } from 'react';
 import { matchRoutes, renderMatches, useLocation } from 'react-router-dom';
 
 import { RouterContext } from './context';
@@ -59,7 +59,7 @@ export function Router(props: RouterProps) {
       }
     }
   })();
-  useEffect(() => {
+  useIsomorphicLayoutEffect(() => {
     if (isUndefined(title)) {
       document.title = titleOptions.default ?? '';
     } else {

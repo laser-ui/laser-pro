@@ -3,7 +3,7 @@ import type { Route } from './types';
 import type { Location, RouteMatch } from 'react-router-dom';
 
 import { isNull, isUndefined } from 'lodash';
-import { Fragment, memo, useContext, useEffect, useRef } from 'react';
+import { Fragment, memo, use, useEffect, useRef } from 'react';
 import { UNSAFE_RouteContext, useLocation } from 'react-router-dom';
 
 import { RouterContext } from './context';
@@ -69,8 +69,8 @@ export function createReuseOutlet(reuse: Map<string, (string | RegExp)[]>, optio
       key,
     });
 
-    let { outlet } = useContext(UNSAFE_RouteContext);
-    const { matches } = useContext(RouterContext);
+    let { outlet } = use(UNSAFE_RouteContext);
+    const { matches } = use(RouterContext);
     const matchPath = ReuseRoute.getPath(matches);
 
     if (reuseRoute.shouldReuseRoute(cache.current.prevMatches, matches)) {
