@@ -1,7 +1,6 @@
 import type { CanActivateFn, Route, RouteItem, TitleOptions } from './types';
 import type { RouteMatch } from 'react-router-dom';
 
-import { useIsomorphicLayoutEffect } from '@laser-ui/hooks';
 import { isFunction, isUndefined, nth } from 'lodash';
 import { matchRoutes, renderMatches, useLocation } from 'react-router-dom';
 
@@ -59,9 +58,9 @@ export function Router(props: RouterProps) {
       }
     }
   })();
-  useIsomorphicLayoutEffect(() => {
+  const documentTitle = (() => {
     if (isUndefined(title)) {
-      document.title = titleOptions.default ?? '';
+      return titleOptions.default ?? '';
     } else {
       const arr = [title];
       if (titleOptions.prefix) {
@@ -70,12 +69,9 @@ export function Router(props: RouterProps) {
       if (titleOptions.suffix) {
         arr.push(titleOptions.suffix);
       }
-      document.title = arr.join(titleOptions.separator ?? ' - ');
+      return arr.join(titleOptions.separator ?? ' - ');
     }
-    return () => {
-      document.title = titleOptions.default ?? '';
-    };
-  });
+  })();
 
   return (
     <RouterContext.Provider
@@ -85,6 +81,7 @@ export function Router(props: RouterProps) {
         title,
       }}
     >
+      {documentTitle && <title>{documentTitle}</title>}
       {element}
     </RouterContext.Provider>
   );
