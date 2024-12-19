@@ -1,6 +1,6 @@
 import type { CanActivateFn } from './types';
 
-import { Navigate } from 'react-router-dom';
+import { Navigate } from 'react-router';
 
 export function useTokenGuard(expired: boolean, redirect: string, state?: any): CanActivateFn {
   return () => {

@@ -2,7 +2,7 @@ import type { CanActivateFn } from './types';
 
 import { useACL } from '@laser-pro/acl';
 import { isObject } from 'lodash';
-import { Navigate } from 'react-router-dom';
+import { Navigate } from 'react-router';
 
 export function useACLGuard(redirect: string, state?: any): CanActivateFn {
   const acl = useACL();

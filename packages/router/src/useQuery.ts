@@ -1,9 +1,9 @@
-import type { NavigateOptions } from 'react-router-dom';
+import type { NavigateOptions } from 'react-router';
 
 import { useEventCallback } from '@laser-ui/hooks';
 import * as JSURL from 'jsurl';
 import { useMemo, useState } from 'react';
-import { useNavigate } from 'react-router-dom';
+import { useNavigate } from 'react-router';
 
 export function useQuery<T>(defaultParams: T) {
   const navigate = useNavigate();

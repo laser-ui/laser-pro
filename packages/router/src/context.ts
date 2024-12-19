@@ -1,5 +1,5 @@
 import type { Route } from './types';
-import type { RouteMatch } from 'react-router-dom';
+import type { RouteMatch } from 'react-router';
 
 import { createContext } from 'react';
 

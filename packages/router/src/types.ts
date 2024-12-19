@@ -1,5 +1,5 @@
 import type { Control, ControlMode } from '@laser-pro/acl/types';
-import type { IndexRouteObject, NonIndexRouteObject } from 'react-router-dom';
+import type { IndexRouteObject, NonIndexRouteObject } from 'react-router';
 
 export {};
 

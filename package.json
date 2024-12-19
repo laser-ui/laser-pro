@@ -22,7 +22,7 @@
     "lodash": "^4.17.21",
     "react": "19.0.0",
     "react-dom": "19.0.0",
-    "react-router-dom": "^6.23.1",
+    "react-router": "^7.0.2",
     "tslib": "^2.3.0"
   },
   "devDependencies": {

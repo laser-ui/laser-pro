@@ -1,6 +1,6 @@
 /* eslint-disable @typescript-eslint/no-non-null-assertion */
 /* eslint-disable @typescript-eslint/no-unused-vars */
-import type { matchRoutes } from 'react-router-dom';
+import type { matchRoutes } from 'react-router';
 
 import { isString } from 'lodash';
 

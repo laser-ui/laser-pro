@@ -1,8 +1,8 @@
 import type { CanActivateFn, Route, RouteItem, TitleOptions } from './types';
-import type { RouteMatch } from 'react-router-dom';
+import type { RouteMatch } from 'react-router';
 
 import { isFunction, isUndefined, nth } from 'lodash';
-import { matchRoutes, renderMatches, useLocation } from 'react-router-dom';
+import { matchRoutes, renderMatches, useLocation } from 'react-router';
 
 import { RouterContext } from './context';
 

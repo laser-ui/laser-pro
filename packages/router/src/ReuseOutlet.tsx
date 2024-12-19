@@ -1,10 +1,10 @@
 import type { MatchRoutes } from './reuse-route';
 import type { Route } from './types';
-import type { Location, RouteMatch } from 'react-router-dom';
+import type { Location, RouteMatch } from 'react-router';
 
 import { isNull, isUndefined } from 'lodash';
 import { Fragment, memo, use, useEffect, useRef } from 'react';
-import { UNSAFE_RouteContext, useLocation } from 'react-router-dom';
+import { UNSAFE_RouteContext, useLocation } from 'react-router';
 
 import { RouterContext } from './context';
 import { ReuseRoute } from './reuse-route';
