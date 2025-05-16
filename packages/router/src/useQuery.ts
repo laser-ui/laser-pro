@@ -3,49 +3,53 @@ import type { NavigateOptions } from 'react-router';
 import { useEventCallback } from '@laser-ui/hooks';
 import * as JSURL from 'jsurl';
 import { isEqual } from 'lodash';
-import { useMemo, useState } from 'react';
+import { useRef, useState } from 'react';
 import { useNavigate } from 'react-router';
 
 export function useQuery<T>(defaultParams: T) {
   const navigate = useNavigate();
 
-  const [_params, setParams] = useState<Partial<T>>(() => {
+  const defaultParamsRef = useRef(defaultParams);
+  const [params, setParams] = useState<Partial<T>>(() => {
     if (typeof window !== 'undefined') {
       const param = new URLSearchParams(window.location.search).get(useQuery.KEY);
       return param ? JSURL.parse(param) : {};
     }
     return {};
   });
+  const allParams = { ...defaultParamsRef.current, ...params };
 
-  const params = useMemo<T>(() => ({ ...defaultParams, ..._params }), [_params]);
   const update = useEventCallback(
     (
       value: Partial<T>,
       options?: {
-        clear?: boolean;
+        replace?: boolean;
         navigateOptions?: NavigateOptions;
       },
     ) => {
-      const { clear = false, navigateOptions } = options ?? {};
+      const { replace = false, navigateOptions } = options ?? {};
 
-      const paramsAdded: Partial<T> = clear ? value : { ..._params, ...value };
-      const paramsMerged = { ...defaultParams, ...paramsAdded };
+      const currentParams: Partial<T> = replace ? value : { ...params, ...value };
+      const currentAllParams = { ...defaultParamsRef.current, ...currentParams };
 
-      if (!isEqual(paramsMerged, params)) {
-        setParams(paramsAdded);
+      if (!isEqual(currentAllParams, allParams)) {
+        setParams(currentParams);
+      }
 
-        if (navigateOptions) {
-          const newSearchParams = new URLSearchParams(window.location.search);
-          newSearchParams.set(useQuery.KEY, JSURL.stringify(paramsAdded));
-          navigate('?' + newSearchParams, { replace: true, ...navigateOptions });
+      if (navigateOptions) {
+        const searchParams = new URLSearchParams(window.location.search);
+        const value = JSURL.stringify(currentAllParams);
+        if (searchParams.get(useQuery.KEY) !== value) {
+          searchParams.set(useQuery.KEY, value);
+          navigate('?' + searchParams, { replace: true, ...navigateOptions });
         }
       }
 
-      return paramsMerged;
+      return currentAllParams;
     },
   );
 
-  return [params, update] as const;
+  return [allParams, update] as const;
 }
 
 useQuery.KEY = 'q';
