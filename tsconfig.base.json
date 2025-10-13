@@ -30,8 +30,6 @@
       "@laser-pro/acl/*": ["packages/acl/src/*"],
       "@laser-pro/auth": ["packages/auth/src/index.ts"],
       "@laser-pro/auth/*": ["packages/auth/src/*"],
-      "@laser-pro/http": ["packages/http/src/index.ts"],
-      "@laser-pro/http/*": ["packages/http/src/*"],
       "@laser-pro/router": ["packages/router/src/index.ts"],
       "@laser-pro/router/*": ["packages/router/src/*"],
       "@laser-pro/storage": ["packages/storage/src/index.ts"],
