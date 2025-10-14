@@ -2,6 +2,10 @@
 
 All notable changes to this project will be documented in this file. See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [2.0.0](https://github.com/laser-ui/laser-pro/compare/v1.1.0...v2.0.0) (2025-10-14)
+
+**Note:** Version bump only for package @laser-pro/storage
+
 # [1.1.0](https://github.com/laser-ui/laser-pro/compare/v1.0.3...v1.1.0) (2025-05-16)
 
 **Note:** Version bump only for package @laser-pro/storage
