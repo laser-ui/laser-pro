@@ -7,7 +7,7 @@ import { isEqual } from 'lodash';
 import { useState } from 'react';
 import { useNavigate } from 'react-router';
 
-export function useQueryParams<T extends { [key: string]: JsonValue }>(defaultValue: T) {
+export function useQueryParams<T extends Record<keyof T, JsonValue>>(defaultValue: T) {
   const navigate = useNavigate();
 
   const [searchParams, setSearchParams] = useState<T>(() => {
