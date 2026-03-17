@@ -43,3 +43,5 @@ export interface NonIndexRouteItem extends Omit<NonIndexRouteObject, 'children'>
 export type RouteItem = IndexRouteItem | NonIndexRouteItem;
 
 export type CanActivateFn = (route: Route) => true | React.ReactElement;
+
+export type JsonValue = string | number | boolean | null | JsonValue[] | { [key: string]: JsonValue };

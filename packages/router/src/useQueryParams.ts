@@ -1,3 +1,4 @@
+import type { JsonValue } from './types';
 import type { NavigateOptions } from 'react-router';
 
 import { useEventCallback } from '@laser-ui/hooks';
@@ -6,7 +7,7 @@ import { isEqual } from 'lodash';
 import { useState } from 'react';
 import { useNavigate } from 'react-router';
 
-export function useQueryParams<T>(defaultValue: T) {
+export function useQueryParams<T extends { [key: string]: JsonValue }>(defaultValue: T) {
   const navigate = useNavigate();
 
   const [searchParams, setSearchParams] = useState<T>(() => {
