@@ -7,13 +7,13 @@ import { isEqual } from 'lodash';
 import { useState } from 'react';
 import { useNavigate } from 'react-router';
 
-export function useQueryParams<T extends Record<keyof T, JsonValue>>(defaultValue: T) {
+export function useQueryParams<T extends Record<keyof T, JsonValue>>(defaultValue: T, key: string = useQueryParams.KEY) {
   const navigate = useNavigate();
 
   const [searchParams, setSearchParams] = useState<T>(() => {
     let params: any = {};
     if (typeof window !== 'undefined') {
-      const query = new URLSearchParams(window.location.search).get(useQueryParams.KEY);
+      const query = new URLSearchParams(window.location.search).get(key);
       params = query ? JSURL.parse(query) : {};
     }
     return { ...defaultValue, ...params };
@@ -29,9 +29,9 @@ export function useQueryParams<T extends Record<keyof T, JsonValue>>(defaultValu
       value,
       saveToUrl: (options?: NavigateOptions) => {
         const searchParams = new URLSearchParams(window.location.search);
-        const query = searchParams.get(useQueryParams.KEY);
+        const query = searchParams.get(key);
         if (!isEqual(value, { ...defaultValue, ...(query ? JSURL.parse(query) : {}) })) {
-          searchParams.set(useQueryParams.KEY, JSURL.stringify(value));
+          searchParams.set(key, JSURL.stringify(value));
           navigate('?' + searchParams, { replace: true, ...options });
 
           setSearchParams(value);
