@@ -2,7 +2,6 @@ import type { TokenConfigs } from './types';
 
 import { isUndefined } from 'lodash';
 
-let token: Token;
 export abstract class Token {
   private _value: string;
   private _configs: TokenConfigs = {
@@ -30,12 +29,6 @@ export abstract class Token {
   }
 
   constructor(value: string, configs: Partial<TokenConfigs>) {
-    if (token) {
-      token.destroy();
-    }
-    // eslint-disable-next-line @typescript-eslint/no-this-alias
-    token = this;
-
     this._value = value;
     Object.keys(configs).forEach((key) => {
       (this._configs as any)[key] = (configs as any)[key];
