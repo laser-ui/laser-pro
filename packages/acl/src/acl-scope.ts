@@ -40,23 +40,23 @@ export class AclScope {
       },
       setFull: (full: boolean) => {
         that._full = full;
-        that.emitChange();
+        that.emitChange.bind(that)();
       },
       set: (control: Control[]) => {
         that._controls = new Set(control);
-        that.emitChange();
+        that.emitChange.bind(that)();
       },
       add: (control: Control | Control[]) => {
         for (const v of isArray(control) ? control : [control]) {
           that._controls.add(v);
         }
-        that.emitChange();
+        that.emitChange.bind(that)();
       },
       remove: (control: Control | Control[]) => {
         for (const v of isArray(control) ? control : [control]) {
           that._controls.delete(v);
         }
-        that.emitChange();
+        that.emitChange.bind(that)();
       },
       can: (control: Control | Control[], mode: ControlMode = 'one') => {
         if (that._full) {
@@ -77,8 +77,8 @@ export class AclScope {
     // eslint-disable-next-line @typescript-eslint/no-this-alias
     const that = this;
     return () => {
-      const controls = useSyncExternalStore(that.subscribe, that.getSnapshot, that.getSnapshot);
-      return useMemo(() => that.createAcl(), [controls]);
+      const controls = useSyncExternalStore(that.subscribe.bind(that), that.getSnapshot.bind(that), that.getSnapshot.bind(that));
+      return useMemo(() => that.createAcl.bind(that)(), [controls]);
     };
   }
 }
