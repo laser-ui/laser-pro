@@ -2,6 +2,12 @@
 
 All notable changes to this project will be documented in this file. See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [3.0.1](https://github.com/laser-ui/laser-pro/compare/v3.0.0...v3.0.1) (2026-03-18)
+
+### Bug Fixes
+
+- **acl:** fix bind this ([578f661](https://github.com/laser-ui/laser-pro/commit/578f661207c0f8ace49da9775b74995bc71af887))
+
 # [3.0.0](https://github.com/laser-ui/laser-pro/compare/v2.0.2...v3.0.0) (2026-03-18)
 
 ### Bug Fixes
