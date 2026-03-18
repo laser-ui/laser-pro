@@ -2,6 +2,16 @@
 
 All notable changes to this project will be documented in this file. See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [3.0.0](https://github.com/laser-ui/laser-pro/compare/v2.0.2...v3.0.0) (2026-03-18)
+
+### Bug Fixes
+
+- **acl:** return new acl when update ([64aa132](https://github.com/laser-ui/laser-pro/commit/64aa13233ea590a766eefa71ada723e91e61a1d1))
+
+### Features
+
+- **acl:** acl support scope ([a8d5bbd](https://github.com/laser-ui/laser-pro/commit/a8d5bbde2cd4cae029115214678d1f3a57168bbe))
+
 ## [2.0.2](https://github.com/laser-ui/laser-pro/compare/v2.0.1...v2.0.2) (2026-03-17)
 
 **Note:** Version bump only for package @laser-pro/acl

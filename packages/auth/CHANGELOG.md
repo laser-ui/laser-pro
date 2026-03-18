@@ -2,6 +2,12 @@
 
 All notable changes to this project will be documented in this file. See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [3.0.0](https://github.com/laser-ui/laser-pro/compare/v2.0.2...v3.0.0) (2026-03-18)
+
+### Bug Fixes
+
+- **auth:** support multiple tokens ([02be3cd](https://github.com/laser-ui/laser-pro/commit/02be3cdff6c31d1ab30b0b238847d48de20b702e))
+
 ## [2.0.2](https://github.com/laser-ui/laser-pro/compare/v2.0.1...v2.0.2) (2026-03-17)
 
 **Note:** Version bump only for package @laser-pro/auth
