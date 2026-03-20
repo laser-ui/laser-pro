@@ -2,6 +2,12 @@
 
 All notable changes to this project will be documented in this file. See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [3.1.0](https://github.com/laser-ui/laser-pro/compare/v3.0.1...v3.1.0) (2026-03-20)
+
+### Features
+
+- **router:** `useQueryParams` support set via the latest value ([82455e6](https://github.com/laser-ui/laser-pro/commit/82455e6b9763dca5a5e28fc57ccd152992e45904))
+
 ## [3.0.1](https://github.com/laser-ui/laser-pro/compare/v3.0.0...v3.0.1) (2026-03-18)
 
 **Note:** Version bump only for package @laser-pro/router
