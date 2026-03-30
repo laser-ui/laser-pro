@@ -2,6 +2,12 @@
 
 All notable changes to this project will be documented in this file. See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [3.2.1](https://github.com/laser-ui/laser-pro/compare/v3.2.0...v3.2.1) (2026-03-30)
+
+### Bug Fixes
+
+- fix `useMemo` when use react compiler ([0c46f03](https://github.com/laser-ui/laser-pro/commit/0c46f03dfeb7d31552694f60b2a979f70eb80da8))
+
 # [3.2.0](https://github.com/laser-ui/laser-pro/compare/v3.1.0...v3.2.0) (2026-03-27)
 
 **Note:** Version bump only for package @laser-pro/acl
