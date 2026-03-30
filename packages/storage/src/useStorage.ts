@@ -2,7 +2,7 @@ import type { AbstractParserOptions } from './parser';
 
 import { useEventCallback } from '@laser-ui/hooks';
 import { isNull, isNumber, isString } from 'lodash';
-import { useMemo, useSyncExternalStore } from 'react';
+import { useMemo, useState, useSyncExternalStore } from 'react';
 
 import { CONFIGS, config } from './configs';
 import { MEMORY_STORAGE_PARSER } from './memory-storage';
@@ -64,7 +64,7 @@ export function useStorage<V>(
 } {
   const { defaultValue = key in CONFIGS.default ? CONFIGS.default[key] : null, parser = 'plain' } = options ?? {};
 
-  const { serializer, deserializer } = (CONFIGS.parser ?? CONFIGS.service.parser ?? MEMORY_STORAGE_PARSER)[parser] as any;
+  const { serializer, deserializer: _deserializer } = (CONFIGS.parser ?? CONFIGS.service.parser ?? MEMORY_STORAGE_PARSER)[parser] as any;
 
   const store = useMemo(() => {
     let store = STROES.get(key);
@@ -80,7 +80,9 @@ export function useStorage<V>(
     };
   }, [key]);
   const _value: any = useSyncExternalStore(store.subscribe, store.getSnapshot, store.getSnapshot);
-  const value = useMemo(() => (isNull(_value) ? defaultValue : deserializer(_value)), [_value]);
+  const [initDefaultValue] = useState(defaultValue);
+  const deserializer = useEventCallback(_deserializer);
+  const value = useMemo(() => (isNull(_value) ? initDefaultValue : deserializer(_value)), [_value, deserializer, initDefaultValue]);
 
   return {
     value,

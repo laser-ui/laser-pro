@@ -28,7 +28,9 @@ export class AclScope {
     return this.controls;
   }
 
-  createAcl() {
+  createAcl(controls: Control[]) {
+    this._controls = new Set(controls);
+    this.controls = Array.from(this._controls);
     // eslint-disable-next-line @typescript-eslint/no-this-alias
     const that = this;
     return {
@@ -78,7 +80,7 @@ export class AclScope {
     const that = this;
     return () => {
       const controls = useSyncExternalStore(that.subscribe.bind(that), that.getSnapshot.bind(that), that.getSnapshot.bind(that));
-      return useMemo(() => that.createAcl.bind(that)(), [controls]);
+      return useMemo(() => that.createAcl.bind(that)(controls), [controls]);
     };
   }
 }
