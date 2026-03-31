@@ -2,6 +2,12 @@
 
 All notable changes to this project will be documented in this file. See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [3.2.2](https://github.com/laser-ui/laser-pro/compare/v3.2.1...v3.2.2) (2026-03-31)
+
+### Bug Fixes
+
+- **acl:** fix infinite loops ([662e99f](https://github.com/laser-ui/laser-pro/commit/662e99faca525a757f20ec92d5fab1a13e3bf12e))
+
 ## [3.2.1](https://github.com/laser-ui/laser-pro/compare/v3.2.0...v3.2.1) (2026-03-30)
 
 ### Bug Fixes
