@@ -40,23 +40,23 @@ export class AclScope {
       },
       setFull: (full: boolean) => {
         that._full = full;
-        that.emitChange.bind(that)();
+        that.emitChange();
       },
       set: (control: Control[]) => {
         that._controls = new Set(control);
-        that.emitChange.bind(that)();
+        that.emitChange();
       },
       add: (control: Control | Control[]) => {
         for (const v of isArray(control) ? control : [control]) {
           that._controls.add(v);
         }
-        that.emitChange.bind(that)();
+        that.emitChange();
       },
       remove: (control: Control | Control[]) => {
         for (const v of isArray(control) ? control : [control]) {
           that._controls.delete(v);
         }
-        that.emitChange.bind(that)();
+        that.emitChange();
       },
       can: (control: Control | Control[], mode: ControlMode = 'one') => {
         if (that._full) {
