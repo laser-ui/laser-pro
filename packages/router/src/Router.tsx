@@ -17,13 +17,6 @@ export function Router(props: RouterProps) {
   const location = useLocation();
 
   const matches = matchRoutes(routes, location) as any as RouteMatch<string, Route>[] | null;
-  if (matches) {
-    matches.forEach((matche) => {
-      if (isFunction(matche.route.data)) {
-        matche.route.data = matche.route.data(matche.params);
-      }
-    });
-  }
 
   const element: React.ReactNode = (() => {
     if (!matches) {
@@ -32,10 +25,12 @@ export function Router(props: RouterProps) {
 
     let canActivateChild: CanActivateFn[] = [];
     for (const match of matches) {
-      const routeData = (match.route as Route).data;
-      if (routeData && routeData.canActivate) {
-        for (const canActivate of routeData.canActivate.concat(canActivateChild)) {
-          const can = canActivate(match.route);
+      const routeData = isFunction(match.route.data) ? match.route.data(match.params) : match.route.data;
+      const guards = (routeData?.canActivate ?? []).concat(canActivateChild);
+      if (guards.length > 0) {
+        const resolvedRoute = { ...match.route, data: routeData } as Route;
+        for (const canActivate of guards) {
+          const can = canActivate(resolvedRoute);
           if (can !== true) {
             return can;
           }
@@ -53,7 +48,8 @@ export function Router(props: RouterProps) {
     if (matches) {
       const match = nth(matches, -1);
       if (match) {
-        const { title } = match.route.data ?? {};
+        const routeData = isFunction(match.route.data) ? match.route.data(match.params) : match.route.data;
+        const { title } = routeData ?? {};
         return isFunction(title) ? title(match.params) : title;
       }
     }

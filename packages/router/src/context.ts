@@ -4,7 +4,7 @@ import type { RouteMatch } from 'react-router';
 import { createContext } from 'react';
 
 export interface RouterContextData {
-  outlet: React.ReactElement | null;
+  outlet: React.ReactNode;
   matches: RouteMatch<string, Route>[] | null;
   title?: string;
 }
