@@ -2,6 +2,14 @@
 
 All notable changes to this project will be documented in this file. See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [4.0.1](https://github.com/laser-ui/laser-pro/compare/v4.0.0...v4.0.1) (2026-05-06)
+
+### Bug Fixes
+
+- **router:** preserve route.data and run canActivateChild without canActivate ([123534e](https://github.com/laser-ui/laser-pro/commit/123534e9b5584f67aa049f8dfe6dcee342f92dcb))
+- **router:** useQueryParams syncs saved state with URL and fixes shadowing ([1346011](https://github.com/laser-ui/laser-pro/commit/13460112d4eb5760bfd6e2e15cc7a1699f251b16))
+- **storage:** auto-infer serializer in hook's set based on value type ([b8b97f8](https://github.com/laser-ui/laser-pro/commit/b8b97f8417d1438197a0871d189af091b7a3ed6b))
+
 # [4.0.0](https://github.com/laser-ui/laser-pro/compare/v3.2.2...v4.0.0) (2026-04-23)
 
 ### Features

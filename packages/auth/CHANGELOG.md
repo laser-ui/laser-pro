@@ -2,6 +2,10 @@
 
 All notable changes to this project will be documented in this file. See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [4.0.1](https://github.com/laser-ui/laser-pro/compare/v4.0.0...v4.0.1) (2026-05-06)
+
+**Note:** Version bump only for package @laser-pro/auth
+
 # [4.0.0](https://github.com/laser-ui/laser-pro/compare/v3.2.2...v4.0.0) (2026-04-23)
 
 **Note:** Version bump only for package @laser-pro/auth
