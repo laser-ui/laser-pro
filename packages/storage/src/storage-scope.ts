@@ -119,7 +119,8 @@ export class StorageScope {
     return <V>(key: string, options?: ValueOptions<V>) => {
       const { defaultValue = key in that._configs.default ? that._configs.default[key] : null, parser = 'plain' } = options ?? {};
 
-      const { serializer, deserializer: _deserializer } = that._parser[parser] as any;
+      const _parser = that._parser;
+      const { deserializer: _deserializer } = _parser[parser] as any;
 
       const store = useMemo(() => {
         const s = that._getStore(key);
@@ -138,7 +139,12 @@ export class StorageScope {
       return {
         value,
         set: useEventCallback((val) => {
-          const originValue = serializer(typeof val === 'function' ? (val as (prev: V | null) => V)(value) : val);
+          const _val = typeof val === 'function' ? (val as (prev: V | null) => V)(value) : val;
+          const originValue = isString(_val)
+            ? _parser.plain.serializer(_val)
+            : isNumber(_val)
+              ? _parser.number.serializer(_val)
+              : _parser.json.serializer(_val);
           that._configs.service.setItem(key, originValue);
           store.emitChange();
         }),
