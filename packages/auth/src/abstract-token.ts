@@ -39,10 +39,9 @@ export abstract class Token {
   protected refreshToken() {
     if (this.expiration !== 0 && !this.expired) {
       const max = 60 * 60 * 1000;
-      let timeout = Math.max(this.expiration - this._configs.refreshOffset - Date.now(), 0);
       const loop = () => {
+        const timeout = Math.max(this.expiration - this._configs.refreshOffset - Date.now(), 0);
         if (timeout > max) {
-          timeout = timeout - max;
           this.refreshTokenTid = window.setTimeout(() => {
             this.refreshTokenTid = undefined;
             loop();
