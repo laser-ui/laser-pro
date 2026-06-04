@@ -23,7 +23,7 @@ export function Router(props: RouterProps) {
       return null;
     }
 
-    let canActivateChild: CanActivateFn[] = [];
+    const canActivateChild: CanActivateFn[] = [];
     for (const match of matches) {
       const routeData = isFunction(match.route.data) ? match.route.data(match.params) : match.route.data;
       const guards = (routeData?.canActivate ?? []).concat(canActivateChild);
@@ -37,7 +37,7 @@ export function Router(props: RouterProps) {
         }
       }
       if (routeData && routeData.canActivateChild) {
-        canActivateChild = canActivateChild.concat(routeData.canActivateChild);
+        canActivateChild.push(...routeData.canActivateChild);
       }
     }
 

@@ -18,7 +18,7 @@ class Store {
   }
 
   subscribe(onStoreChange: () => void) {
-    this._listeners = this._listeners.concat([onStoreChange]);
+    this._listeners.push(onStoreChange);
     return () => {
       this._listeners = this._listeners.filter((f) => f !== onStoreChange);
     };

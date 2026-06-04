@@ -18,7 +18,7 @@ export class AclScope {
   }
 
   private subscribe(onChange: () => void) {
-    this._listeners = this._listeners.concat([onChange]);
+    this._listeners.push(onChange);
     return () => {
       this._listeners = this._listeners.filter((f) => f !== onChange);
     };
